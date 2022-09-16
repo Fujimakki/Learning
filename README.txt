@@ -1,2 +1,1 @@
-TESTING
-
+The repository is used for studying.
