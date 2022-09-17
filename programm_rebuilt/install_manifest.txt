@@ -1,0 +1,4 @@
+/home/space_monkey/Documents/Learning/InstDir/bin/Tutorial
+/home/space_monkey/Documents/Learning/InstDir/include/TutorialConfig.h
+/home/space_monkey/Documents/Learning/InstDir/lib/libfunc.a
+/home/space_monkey/Documents/Learning/InstDir/include/lib.h
