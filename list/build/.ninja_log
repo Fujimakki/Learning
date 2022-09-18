@@ -1,7 +1,0 @@
-# ninja log v5
-0	285	1663493593024200441	CMakeFiles/main.dir/main.cpp.o	2054bda5a92eca4a
-0	3	0	clean	eee472499eb9f57e
-1	295	1663493836519885813	CMakeFiles/main.dir/outp.cpp.o	3762e085cd4bdbc7
-1	304	1663493836528885801	CMakeFiles/main.dir/main.cpp.o	2054bda5a92eca4a
-1	414	1663493836638885659	CMakeFiles/main.dir/ent.cpp.o	de612056b0a61821
-414	481	1663493836703885575	main	a60fca98385d2977
