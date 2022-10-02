@@ -3,38 +3,25 @@
 
 int main ()
 {
-    while(!isFull())
+    Stack stack;
+    int elem;
+    for(int i = 0; i < 5; i ++)
     {
-        int elem;
         std::cout << "Please enter a new element of structure. The new element will be ";
         std::cin >> elem;
-        push(elem);
+        stack.push(elem);
     }
-    if (!isEmpty())
+    if (!stack.isEmpty())
     {
-        std::cout << "The stack isn't empty.\n";
-        print ();
-    }
-    else
-    {
-        std::cout << "The stack is empty.\n";
-    }
-    while (true)
-    {
-        if (isEmpty())
-        {
-            break;
-        }
-        std::cout << "The last element in the stack is " << pop () << ".\n";
-    }
-    if (!isEmpty())
-    {
-        std::cout << "The stack isn't empty.\n";
-        print ();
+        std::cout << "\nThe stack isn't empty.\n\n";
     }
     else
     {
-        std::cout << "The stack is empty.\n";
+        std::cout << "\nThe stack is empty.\n\n";
+    }
+    while (!stack.isEmpty())
+    {
+        std::cout << "The last element in the stack is " << stack.pop () << ".\n";
     }
 
     return 0;

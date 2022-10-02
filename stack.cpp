@@ -1,66 +1,40 @@
 #include "stack.hpp"
 
-bool empty = 0, full = 0;
+struct Element {
+    int _data;
+    Element* _prev;
 
-struct Stack
-{
-int stk [10];
-int head = 0;
+    Element () {
+        _data = 0;
+        _prev = nullptr;
+    }
+
+    Element (int data, Element* prev = nullptr) {
+        _data = data;
+        _prev = prev;
+    }
+
+    /*~Element() {
+        delete _prev;
+        _prev = nullptr;
+    }*/
 };
 
-struct Stack Stck;
+Element* currentElem = nullptr;
 
-bool isFull ()
-{
-    if (Stck.head > 9)
-    {
-        Stck.head --;
-        full = 1;
-    }
-    return full;
+bool Stack::isEmpty() {
+    return currentElem == nullptr;
 }
 
-void push (int elem)
-{
-    if (Stck.head < 10 && !full)
-    {
-        Stck.stk [Stck.head] = elem;
-        std::cout << "The element is successfully added.\n";
-        Stck.head ++;
-        empty = 0;
-    }
-    else
-    {
-        std::cout << "The stack is full. You can't add the element.\n";
-        Stck.head --;
-    }
+void Stack::push (int newValue) {
+    Element* newElem = new Element(newValue, currentElem);
+    currentElem = newElem;
 }
 
-int pop ()
-{
-    Stck.head --;
-    return Stck.stk [Stck.head+1];
-}
-
-bool isEmpty ()
-{
-    if (Stck.head < 0)
-    {
-        Stck.head ++;
-        empty = 1;
-    }
-    return empty;
-}
-
-
-
-void print ()
-{
-    if (!empty)
-    {
-        for (int i = Stck.head; i >= 0; i --)
-        {
-            std::cout << "The " << i+1 << " element is " << Stck.stk [i] << ".\n";
-        }
-    }
+int Stack::pop () {
+    Element* lastElem = currentElem;
+    currentElem = lastElem->_prev;
+    int value = lastElem->_data;
+    delete lastElem;
+    return value;
 }

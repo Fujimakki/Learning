@@ -2,10 +2,11 @@
 #define STAK
 #include "iostream"
 
-bool isFull ();
-void push (int elem);
-int pop ();
-bool isEmpty ();
-void print ();
+struct Stack
+{
+    bool isEmpty ();
+    void push (int);
+    int pop ();
+};
 
 #endif //STAK
