@@ -1,1 +1,0 @@
-The repository is used for studying.
