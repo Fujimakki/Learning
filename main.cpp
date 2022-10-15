@@ -7,7 +7,7 @@ int main ()
     int elem;
     for(int i = 0; i < 5; i ++)
     {
-        std::cout << "Please enter a new element of structure. The new element will be ";
+        std::cout << "Please enter a new element of stack. The new element will be ";
         std::cin >> elem;
         stack.push(elem);
     }
