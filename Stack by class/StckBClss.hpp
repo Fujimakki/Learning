@@ -7,14 +7,9 @@ class StckBClss
         void *data;
         StckBClss* previous = nullptr;
     public:
-        StckBClss()
-        {
-            data = nullptr;
-        }
-        StckBClss(void *_data, StckBClss* _previous)
+        StckBClss(void *_data)
         {
             data = _data;
-            previous = _previous;
         }
         void set(void *newData);
         void* get();

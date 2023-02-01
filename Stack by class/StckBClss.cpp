@@ -1,7 +1,7 @@
 #include "StckBClss.hpp"
 void StckBClss::set(void *newData)
 {
-    StckBClss* newElem = new StckBClss(newData, previous);
+    StckBClss* newElem = new StckBClss(newData);
     previous = newElem;        
 }
 
