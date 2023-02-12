@@ -1,36 +1,30 @@
 #ifndef LIST_H
 #define LIST_H
 
-/*        <--CLASS ELEMENT DESCRIPTION-->          */
-
-    template <typename T>
-    class Element
-    {
-    public:
-        T data;
-        Element* next;
-        int id;
-
-        Element();
-
-        Element(T);
-
-        Element(const Element&);
-    
-        ~Element()
-        {
-            //delete[] next;
-        }
-    };
-
 /*        <--CLASS LIST DESCRIPTION-->          */
 
     template <typename T>
-    class List: protected Element<T>
+    class List
     {
     private:
-        Element<T>* first;
-        Element<T>* current;
+        struct Element
+        {
+            T data;
+            Element* next;
+
+            Element();
+
+            Element(T);
+
+            Element(const Element&);
+        
+            ~Element() {}
+        };
+        
+        int qsize;
+
+        Element* first;
+        Element* current;
     public:
         List();
 
@@ -40,12 +34,7 @@
 
         ~List()
         {
-            while (!isEmpty())
-            {
-                /*Element<T>* temp = first;
-                first = first->next;            
-                delete temp;*/
-            }
+            while (!isEmpty()) {}
         }
 
         bool isEmpty();
@@ -57,8 +46,6 @@
         void clear();
         
         int size();
-
-        void insert(List<T>, int);
 
         bool operator==(/*List left, */List &right)
         {
@@ -80,20 +67,20 @@
 /*    <--CLASS ELEMENT FUNCTIONS DESCRIPTION-->       */
 
     template <typename T>
-    Element<T>::Element()
+    List<T>::Element::Element()
     {
         this->next = nullptr;
     }
 
     template <typename T>
-    Element<T>::Element(T data)
+    List<T>::Element::Element(T data)
     {
         this->data = data;
         this->next = nullptr;
     }
 
     template <typename T>
-    Element<T>::Element(const Element &temp)
+    List<T>::Element::Element(const Element &temp)
     {
         this->next = temp->next;
         this->data = temp->data;
@@ -104,21 +91,14 @@
     template <typename T>
     List<T>::List()
     {
-        first = this->next;
+        first = nullptr;
+        qsize = 0;
     }
 
     template <typename T>
     List<T>::List(T data)
     {
-        Element<T> *element = new Element<T>(data);
-        if(first == nullptr)
-        {
-            element->id = 1;
-        }
-        else
-        {
-            element->id = current->id + 1;
-        }
+        Element *element = new Element(data);
         if(current == nullptr)
         {
             current = element;
@@ -129,6 +109,7 @@
             current->next = element;
             current = current->next;
         }
+        qsize++;
     }
 
     template <typename T>
@@ -147,16 +128,15 @@
     template <typename T>
     void List<T>::push(T data)
     {
-        Element<T>* elem = new Element<T>(data);
+        qsize++;
+        Element* elem = new Element(data);
         if(isEmpty())
         {
             current = elem;
-            current->id = 1;
             first = current;
         }
         else
         {
-            elem->id = current->id + 1;
             current->next = elem;
             current = elem;
         }
@@ -165,14 +145,22 @@
     template <typename T> 
     T List<T>::pop()
     {
-        Element<T>* element;
-        element = first;
         if(first != nullptr)
         {
-            first = first->next;
+            Element* element;
+            element = first;
+            if(first != nullptr)
+            {
+                first = first->next;
+            }
+            T data = element->data;
+            qsize++;
+            return data;
         }
-        T data = element->data;
-        return data;
+        else
+        {
+            return 0;
+        }
     }
 
     template <typename T>
@@ -180,48 +168,17 @@
     {
         while (!isEmpty())
         {
-            Element<T>* temp = first;
+            Element* temp = first;
             first = first->next;            
             delete temp;
         }
+        qsize = 0;
     }
 
     template <typename T>
     int List<T>::size()
     {
-        return current->id;
-    }
-
-    template <typename T>
-    void List<T>::insert(List<T> new_elem,int place)
-    {
-        Element<T>* element = first;
-        while (element->id != place)
-        {
-            element = element->next;
-            if(element->id == place-1)
-            {
-                current = element;
-            }
-        }
-        while(new_elem.first != nullptr)
-        {
-            new_elem.first->id = place;
-            place++;
-            current->next = new_elem.first;
-            current = current->next;
-            new_elem.first = new_elem.first->next;
-        }
-        while (element != nullptr)
-        {
-            element->id = place;
-            place++;
-            current->next = element;
-            element = element->next;
-            current = current->next;
-        }
-        
-        
+        return qsize;
     }
 
 #endif //LIST_H

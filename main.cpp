@@ -18,13 +18,6 @@ int main()
 
     std::cout << "The size of the queue is " << myQueue.size() << std::endl;
 
-    List<int> elem(1);
-    elem.push(2);
-    
-    myQueue.insert(elem, 3);
-    std::cout << "1 was iserted in the queue." << std::endl;
-
-    std::cout << "The size of the queue is " << myQueue.size() << std::endl;
 
     if(!myQueue.isEmpty())
     {
